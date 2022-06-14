@@ -1,8 +1,9 @@
 const express = require('express')
+const {logger} = require('./helpers/logger.js')
 const { sequelize } = require('./models/index');
 const cors = require('cors')
 
-
+// logger.info('hello world')
 class Server {
 
   constructor() {
@@ -18,7 +19,6 @@ class Server {
   }
 
   middleware() {
-
     this.app.use(express.json());
     this.app.use( cors() );
     this.app.use(express.urlencoded({ extended: false }));

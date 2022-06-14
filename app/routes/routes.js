@@ -26,8 +26,8 @@ router.get('/api/coockie', AuthController.coockie);
 router.post('/api/check_in', AuthController.check_in);
 
 //Rutas tarjetas
-// router.post( '/diversifier', Diversifier);
-// router.post( '/randomAndCipher',  randomAndCipher );
+router.post( '/diversifier', Diversifier);
+router.post( '/randomAndCipher',  randomAndCipher );
 
 // ROUTE WITH CLASES
 router.post( '/diversifier', Diversifier );
