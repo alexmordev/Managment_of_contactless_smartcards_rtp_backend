@@ -5,10 +5,15 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const config = require('../../config/database');
+const logger = require('../utils/logger')
 const db = {};
 
 //Creamos - Conexión
-let sequelize = new Sequelize(config.database, config.username, config.password, config);
+let sequelize = new Sequelize(config.database, config.username, config.password, config,{
+  dialect: config.database.dialect,
+  host: config.database.host,
+  loggin:(message) => { logger.info(message) }
+});
 
 
 fs

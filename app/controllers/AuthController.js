@@ -3,10 +3,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { password } = require('../../config/database')
 const authConfig = require('../../config/auth')
-const {cookieParser} = require('../server')
+const { cookieParser } = require('../server')
 const { Router } = require('express');
 
+//Pruebas
+const logger = require('../utils/logger')
 
+const app = require('express')()
+const pino = require('express-pino-logger')
 
 module.exports = {
 
@@ -23,7 +27,9 @@ module.exports = {
             }
         }).then(user => {
             if (!user) {
-                res.status(406).json({ message: 'User not found', code:406 })
+                res.status(406).json({ message: 'User not found', code: 406 })
+                logger.error( ` Usuario no encontrado ${email}` )
+
             } else {
                 if (bcrypt.compareSync(password, user.password)) {
 
@@ -31,13 +37,12 @@ module.exports = {
                         expiresIn: authConfig.expires //expiresIn-Tiempo que dura la expiracion
                     })
 
-                    res.json({
-                        user,
-                        token,
-                    })
+                    res.json({ user, token, })
+                    logger.info( ` Usuario con id '${user.id}'*** autenticado  ` )
 
                 } else {
                     res.status(401).json({ msg: 'Incorrect password',code:401 })
+                    logger.error( ` Usuario con id '${user.id}'*** Ingreso una contraseña no valida` )
                 }
             }
         }).catch(err => { res.status(500).json(err) });
@@ -49,16 +54,14 @@ module.exports = {
         // res.setHeader('Set-Cookie', 'newUser=true')
         res.cookie('newUser', false)
         res.cookie('isEmployee', true)
-
         res.send('tienes las galletas!')
-
     },
 
     // Función de logout
 
     logout(req, res) {
-        res.cookie('token','', {
-            maxAge:1
+        res.cookie('token', '', {
+            maxAge: 1
         })
         res.redirect('/')
     },
@@ -67,11 +70,8 @@ module.exports = {
     //Funcion para registro
     check_in(req, res) {
         //Encriptar contraseña
-        res.lo
+        
         let password = bcrypt.hashSync(req.body.password, +authConfig.rounds);//-Llamo de .env a rounds
-
-
-
         //Creación de users
         user.create({
             name: req.body.name,
@@ -81,13 +81,11 @@ module.exports = {
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires //expiresIn-Tiempo que dura la expiracion
             })
+            res.json({ user, token, })
+            // logger.info( `Usuario autenticado -> ${email}` )
 
-            res.json({
-                user,
-                token,
-            })
         }).catch(err => {
-            res.status(500).json(err)
+            res.status(500).json(err);
         })
     }
 }

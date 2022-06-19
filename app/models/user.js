@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         len: {
           args: [2, 255],
-          msg: "El nombre tiene que ser minimamente de dos caracters"
+          msg: "El nombre tiene que ser minimamente de dos caracteres"
         }
       }
     },
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         isEmail: {
-          msg: "El email tiene que ser un correo valido"
+          msg: "El email tiene que ser un correo valido",
         }
       }
     },

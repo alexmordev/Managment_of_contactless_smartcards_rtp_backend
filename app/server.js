@@ -1,6 +1,8 @@
 const express = require('express')
 const { sequelize } = require('./models/index');
 const cors = require('cors')
+const logger = require('./utils/logger')
+
 
 
 class Server {
@@ -35,7 +37,8 @@ class Server {
     this.app.listen(process.env.PORT, () => {
       console.log('Conectado al servidor de RTP', process.env.PORT)
       sequelize.authenticate().then(() => {
-        console.log('Connected to the database');
+        // logger.info('Conectado a la base de RTP');
+        console.log('Conectado a la base de datos RTP');
       })
       
     })
