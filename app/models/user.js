@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         len: {
-          args: [6, 255],
+          args: [8, 255],
           msg: "La contraseña tiene que tener minimamente 6 caracteres"
         }
       }
@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
 
   //Comprobación de que el usuario es administrador
   user.isAdmin = (roles) =>{
-    var tempoArray = [];
+    let tempoArray = [];
     roles.forEach(role => tempoArray.push(role.role));
      
     return tempoArray.includes('admin');

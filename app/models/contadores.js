@@ -1,13 +1,21 @@
 'use strict';
-
+const {
+  Model
+} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-
-  const sam = sequelize.define('sam', {
-    sam: {
-      type:DataTypes.STRING,
-      allowNull: false,
-    },
-    tarjeta: {type: DataTypes.STRING,allowNull: false,},
+  class contadores extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  contadores.init({
+    sam: DataTypes.STRING,
+    tarjeta: DataTypes.STRING,
     c00: DataTypes.STRING,
     c01: DataTypes.STRING,
     c02: DataTypes.STRING,
@@ -34,13 +42,14 @@ module.exports = (sequelize, DataTypes) => {
     c23: DataTypes.STRING,
     c24: DataTypes.STRING,
     c25: DataTypes.STRING,
-    c26: DataTypes.STRING
+    c26: DataTypes.STRING,
+    estatus: DataTypes.STRING,
+    movimiento: DataTypes.STRING,
+    folio: DataTypes.STRING,
+    fecha_hora: DataTypes.DATE
   }, {
-    tableName: "sams"
+    sequelize,
+    modelName: 'contadores',
   });
-
-  sam.associate = (models) => {
-   
-  };
-  return sam;
+  return contadores;
 };

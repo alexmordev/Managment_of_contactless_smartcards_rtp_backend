@@ -21,7 +21,7 @@ module.exports = {
 
         { user_id: 1,role_id: 1, createdAt: new Date(),updatedAt: new Date() },//Usuario admin
         { user_id: 1,role_id: 2, createdAt: new Date(),updatedAt: new Date() },//Aparte tendra el user id_2
-        { user_id: 2,role_id: 2, createdAt: new Date(),updatedAt: new Date() },//Manuel solo sera el usuario
+        { user_id: 2,role_id: 2, createdAt: new Date(),updatedAt: new Date() },//Mau solo sera el usuario
 
     ],{}),
 

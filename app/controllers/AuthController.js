@@ -82,7 +82,7 @@ module.exports = {
                 expiresIn: authConfig.expires //expiresIn-Tiempo que dura la expiracion
             })
             res.json({ user, token, })
-            // logger.info( `Usuario autenticado -> ${email}` )
+            logger.info(` Nuevo usuario con id '${user.id}' ` )
 
         }).catch(err => {
             res.status(500).json(err);

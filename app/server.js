@@ -29,6 +29,8 @@ class Server {
   routes() {
 
     this.app.use(require('./routes/routes'))
+    this.app.use(require('./routes/insertSamConta.routes'))
+
     // this.app.use( '/sam-commands', require( '../routes/pin' ) )
 
   }
