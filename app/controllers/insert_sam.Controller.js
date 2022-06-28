@@ -1,6 +1,6 @@
 const { sam_card } = require('../models/index')
 
-const getSams =  async(req, res) => {
+const insertSam =  async(req, res) => {
     const 
     {
         ns_tarjeta,
@@ -23,7 +23,7 @@ const getSams =  async(req, res) => {
         folio: req.body.folio
     }).then(sam_card => {
         if (sam_card) {
-            res.send(sam_card);
+            res.send({sam_card});
         } else {
             res.status(400).json({msg:'Error inserting record'});
         }
@@ -31,5 +31,5 @@ const getSams =  async(req, res) => {
 
 }
 module.exports = {
-    getSams
+    insertSam
 }

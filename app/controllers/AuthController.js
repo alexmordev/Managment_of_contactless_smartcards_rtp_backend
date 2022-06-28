@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken')
 const { password } = require('../../config/database')
 const authConfig = require('../../config/auth')
 const { cookieParser } = require('../server')
-const { Router } = require('express');
 
 //Pruebas
 const logger = require('../utils/logger')

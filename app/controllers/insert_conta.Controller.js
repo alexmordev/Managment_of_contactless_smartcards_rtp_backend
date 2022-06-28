@@ -2,7 +2,7 @@ const { contadores } = require('../models/index')
 // const { sam } = require('../models/index')
 const { Router } = require('express');
 
-const getContadores = async(req, res) =>{
+const insertContadores = async(req, res) =>{
     const
     {
        sam,
@@ -77,7 +77,7 @@ const getContadores = async(req, res) =>{
         fecha_hora: req.body.fecha_hora,
     }).then(contadores => {
         if (contadores) {
-            res.send(contadores);
+            res.send({contadores});
         } else {
             res.status(400).send('Error inserting record');
         }
@@ -85,5 +85,5 @@ const getContadores = async(req, res) =>{
 }
 
 module.exports = {
-    getContadores
+    insertContadores
 }
