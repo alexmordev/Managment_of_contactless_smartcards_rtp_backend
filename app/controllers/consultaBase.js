@@ -2,30 +2,33 @@ const { sequelize } = require('../models/index');
 const { contadores } = require('../models/index')
 const { sam_card } = require('../models/index')
 
-const getConsulta = async(req,res) => {
+const getConsulta = async (req, res) => {
 
-    const conta =  await sequelize.query('SELECT * FROM contadores', {
-        model: contadores,
-        mapToModel: true // si tiene cambios asignados es true
+  const { page = 0, size = 5 } = req.query;
 
-      });
-    //   console.table({conta})
-    res.send(conta);
+  let options = {
+    limit: +size,
+    offset: (+page) * (+size)
+  }
+  const { count, rows } = await contadores.findAndCountAll(options)
+  res.json({ Contadores: 'success', total: count, categories: rows });
+
 }
 
-const consultSam = async(req,res) => {
+const consultSam = async (req, res) => {
 
-    const sams =  await sequelize.query('SELECT * FROM sam_cards', {
-        model: sam_card,
-        mapToModel: true // si tiene cambios asignados es true
+  const { page = 0, size = 5 } = req.query;
 
-      });
-    
-      res.send({sams});
-    //   console.table(sams)
+  let options = {
+    limit: +size,
+    offset: (+page) * (+size)
+  }
+  const { count, rows } = await sam_card.findAndCountAll(options)
+  res.json({ Tabla_Sam: 'success', total: count, categories: rows });
+
 }
 
 module.exports = {
-    getConsulta,
-    consultSam
+  getConsulta,
+  consultSam
 }

@@ -4,6 +4,7 @@ const router = express.Router();
 const contador = require('../controllers/insert_conta.Controller');
 const sam = require('../controllers/insert_sam.Controller');
 const consultaContador = require('../controllers/consultaBase');
+const consult_Divice = require('../controllers/consultaBase');
 
 
 //ruta pruebaController
@@ -15,5 +16,7 @@ router.post( '/api/sams',sam.insertSam )
 router.get('/api/consultaContador', consultaContador.getConsulta)
 router.get('/api/consultaSams', consultaContador.consultSam)
 
+//prueba ruta divise
+router.get('/api/divice', consultaContador.consultSam)
 
 module.exports = router;
