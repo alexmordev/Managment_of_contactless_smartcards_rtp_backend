@@ -5,11 +5,11 @@ const { password } = require('../../config/database')
 const authConfig = require('../../config/auth')
 const { cookieParser } = require('../server')
 
-//Pruebas
+//Logger monitoreos
 const logger = require('../utils/logger')
 
-const app = require('express')()
-const pino = require('express-pino-logger')
+
+
 
 module.exports = {
 
@@ -36,7 +36,7 @@ module.exports = {
                         expiresIn: authConfig.expires //expiresIn-Tiempo que dura la expiracion
                     })
 
-                    res.json({ user, token, })
+                    res.json({ token, })
                     logger.info( ` Usuario con id '${user.id}'*** autenticado  ` )
 
                 } else {
@@ -75,7 +75,8 @@ module.exports = {
         user.create({
             name: req.body.name,
             email: req.body.email,
-            password: password
+            password: password,
+            rol:req.body.rol,
         }).then(user => {
             let token = jwt.sign({ user: user }, authConfig.secret, {
                 expiresIn: authConfig.expires //expiresIn-Tiempo que dura la expiracion

@@ -4,19 +4,30 @@ const router = express.Router();
 const contador = require('../controllers/insert_conta.Controller');
 const sam = require('../controllers/insert_sam.Controller');
 const consultaContador = require('../controllers/consultaBase');
-const consult_Divice = require('../controllers/consultaBase');
+const index = require('../controllers/consultaBase');
+
+//Rutas-Middlewares-Requeridas
+const auth = require('../middlewares/auth');    
+
+//Rutas-Politicas-Requeridas
+const validarRole = require('../middlewares/protectionRoute')
 
 
-//ruta pruebaController
-router.post( '/api/contadores',contador.insertContadores )
-router.post( '/api/sams',sam.insertSam )
+
+//ruta pruebaController Insert
+router.post( '/api/contadores',contador.insertContadores );
+router.post( '/api/sams',sam.insertSam );
 
 
-//consulta contadores para
-router.get('/api/consultaContador', consultaContador.getConsulta)
-router.get('/api/consultaSams', consultaContador.consultSam)
 
-//prueba ruta divise
-router.get('/api/divice', consultaContador.consultSam)
+
+//Proteccion Contadores-Mostrar
+
+router.get('/api/consultaContador',validarRole.validarRole,consultaContador.consultaContador);
+router.get('/api/consultaSams',validarRole.validarRole, consultaContador.consultSam)
+
+
+
+
 
 module.exports = router;

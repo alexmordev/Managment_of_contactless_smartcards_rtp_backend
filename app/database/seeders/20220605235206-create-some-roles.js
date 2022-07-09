@@ -8,11 +8,11 @@ module.exports = {
 
           //Role admin
 
-          { role:"admin", createdAt: new Date(),updatedAt: new Date() },
+          { role:"admin", createdAt: new Date(),updatedAt: new Date() },//1admin
 
           //Role usuarios
 
-          { role:"user", createdAt: new Date(),updatedAt: new Date() }
+          { role:"user", createdAt: new Date(),updatedAt: new Date() }//2user
       ],{}),
 
       queryInterface.bulkInsert('user_role',[

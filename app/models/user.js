@@ -7,9 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isAlpha: {
-          msg: "El nombre solo puede contener letras"
-        },
         len: {
           args: [2, 255],
           msg: "El nombre tiene que ser minimamente de dos caracteres"
@@ -36,12 +33,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+  
   }, {
     tableName: "users"
   });
 
   user.associate = function(models) {
-    user.hasMany(models.post, { as: "posts", foreignKey: "userId" })
+    // user.hasMany(models.contadores, { as: "contadores", foreignKey: "userId" })
     user.belongsToMany(models.Role, { as: "roles", through: "user_role",foreignKey: "user_id" })
   };
 
@@ -49,7 +47,6 @@ module.exports = (sequelize, DataTypes) => {
   user.isAdmin = (roles) =>{
     let tempoArray = [];
     roles.forEach(role => tempoArray.push(role.role));
-     
     return tempoArray.includes('admin');
   }
 

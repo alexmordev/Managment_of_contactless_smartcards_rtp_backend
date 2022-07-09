@@ -1,8 +1,9 @@
 const { sequelize } = require('../models/index');
 const { contadores } = require('../models/index')
-const { sam_card } = require('../models/index')
+const { sam_card } = require('../models/index');
+// const { find } = require('./PostController');
 
-const getConsulta = async (req, res) => {
+const consultaContador = async (req, res) => {
 
   const { page = 0, size = 5 } = req.query;
 
@@ -29,6 +30,7 @@ const consultSam = async (req, res) => {
 }
 
 module.exports = {
-  getConsulta,
-  consultSam
+  consultaContador,
+  consultSam,
+  // index
 }
