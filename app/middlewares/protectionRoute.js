@@ -33,25 +33,10 @@ const validarRole = (req, res, next) => {
                     req.user = user;
                     next();
                 })
-
             }
         })
     }
 }
-
-
-// const validarRole = (req,res,next) => {
-//     if(!req.user){
-//         return res.send( {msg:'No puedes'})
-//     }
-// }
-
-// const {id} = req.user
-
-// if(id !== "admin"){
-//     return res.send( {msg:'Nada'})
-// }
-// next();
 
 module.exports = {
     validarRole

@@ -26,11 +26,6 @@ router.post( '/randomAndCipher',  randomAndCipher );
 // ROUTE WITH CLASES
 router.post( '/diversifier', Diversifier );
 
-// //Rutas middlewares
-// router.get('/api/posts', auth, PostController.index);
-// router.get('/api/posts/:id', auth, PostController.find,PostPolicy.show, PostController.show);
-// // router.patch('/api/posts/:id', auth, PostController.find,PostPolicy.update,PostController.update);
-// // router.delete('/api/posts/:id', auth, PostController.find,PostPolicy.delete, PostController.delete);
 
 
 

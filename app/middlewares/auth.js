@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const authConfig = require('../../config/auth');
 const { user } = require('../models/index')
+const {error_Http} = require('../helpers/erroresHttp')
 
 module.exports = (req,res, next) => {
 
@@ -9,7 +10,7 @@ module.exports = (req,res, next) => {
     //Comprobaremos que existe el token
 
     if(!req.headers.authorization){
-        res.status(401).json({ message: "Unauthorized access!",code:401 });
+        res.status(401).json({ message: "Unauthorized access!",error_Http:error_Http.unauthorized });
     }else{
 
         //Comprobar la valides de este token
